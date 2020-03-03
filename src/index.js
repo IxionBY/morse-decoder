@@ -39,32 +39,32 @@ const MORSE_TABLE = {
 
 function decode(expr) {
     var arrCode=[];
-    var code='';
-    var decode='';
+    var decoder='';
+    var letter='';
     for(var i = 0; i < expr.length; i+=10){
         arrCode.push(expr.slice(i,i+10));
     }
     arrCode.forEach(element => {
-        decode = '';
+        letter = '';
         if(element == '**********'){
-            code += ' ';
+            decoder += ' ';
         }else{
             for(var i = 0; i < element.length; i+=2){
                 if(element.slice(i,i+2) == '10'){
-                    decode += '.';
+                    letter += '.';
                 }else if(element.slice(i,i+2) == '11'){
-                    decode += '-';
+                    letter += '-';
                 }
             }
             for(var key in MORSE_TABLE){
-                if(decode == key){
-                    code += MORSE_TABLE[decode];
+                if(letter == key){
+                    decoder += MORSE_TABLE[letter];
                 }
             }
         }
     });
 
-    return code;
+    return decoder;
 }
 
 module.exports = {
